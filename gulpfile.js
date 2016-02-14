@@ -1,6 +1,13 @@
 var gulp = require('gulp'),
   minifyCSS = require('gulp-minify-css'),
-  uglify = require('gulp-uglify');
+  uglify = require('gulp-uglify'),
+  del = require('del');
+
+  gulp.task('delete', function() {
+    del(['assets/*'], function(err) {
+      console.log('Files deleted');
+    });
+  });
 
   gulp.task('style', function() {
     return gulp
@@ -16,4 +23,4 @@ var gulp = require('gulp'),
       .pipe(gulp.dest('assets'));
   });
 
-  gulp.task('default', ['style','script']);
+  gulp.task('default', ['delete','style','script']);
