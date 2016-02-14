@@ -26,5 +26,10 @@ var gulp = require('gulp'),
       .pipe(gulp.dest('assets'));
   });
 
-  gulp.task('default', ['delete','style','script']);
+  gulp.task('watch', function() {
+    gulp.watch('css/style.css', ['style']);
+    gulp.watch('js/script.js', ['script']);
+  })
+
+  gulp.task('default', ['delete', 'style', 'script', 'watch']);
 
