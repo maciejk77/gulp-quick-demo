@@ -15,3 +15,5 @@ var gulp = require('gulp'),
       .pipe(uglify())
       .pipe(gulp.dest('assets'));
   });
+
+  gulp.task('default', ['style','script']);
