@@ -2,7 +2,9 @@ var gulp = require('gulp'),
   minifyCSS = require('gulp-minify-css'),
   uglify = require('gulp-uglify'),
   del = require('del'),
-  rename = require('gulp-rename');
+  rename = require('gulp-rename'),
+  jshint = require('gulp-jshint'),
+  plumber = require('gulp-plumber');
 
   gulp.task('delete', function() {
     del(['assets/*'], function(err) {
@@ -21,7 +23,9 @@ var gulp = require('gulp'),
   gulp.task('script', function() {
     return gulp
       .src('js/script.js')
+      .pipe(plumber())
       .pipe(uglify())
+      .pipe(jshint())
       .pipe(rename({suffix: '.min'}))
       .pipe(gulp.dest('assets'));
   });
