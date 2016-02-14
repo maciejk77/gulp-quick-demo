@@ -1,7 +1,8 @@
 var gulp = require('gulp'),
   minifyCSS = require('gulp-minify-css'),
   uglify = require('gulp-uglify'),
-  del = require('del');
+  del = require('del'),
+  rename = require('gulp-rename');
 
   gulp.task('delete', function() {
     del(['assets/*'], function(err) {
@@ -13,6 +14,7 @@ var gulp = require('gulp'),
     return gulp
       .src('css/style.css')
       .pipe(minifyCSS())
+      .pipe(rename({suffix: '.min'}))
       .pipe(gulp.dest('assets'));
   });
 
@@ -20,7 +22,9 @@ var gulp = require('gulp'),
     return gulp
       .src('js/script.js')
       .pipe(uglify())
+      .pipe(rename({suffix: '.min'}))
       .pipe(gulp.dest('assets'));
   });
 
   gulp.task('default', ['delete','style','script']);
+
